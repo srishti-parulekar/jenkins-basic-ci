@@ -1,4 +1,5 @@
-FROM nginx:alpine
-COPY index.html /usr/share/nginx/html
+FROM busybox:latest
+RUN mkdir -p /var/www
+COPY index.html /var/www/
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["httpd", "-f", "-p", "80", "-h", "/var/www"]
